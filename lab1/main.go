@@ -39,8 +39,8 @@ func Negatives(jonsSleepHrs int) int {
 func Pennies(jonsSavings float64) int {
 	// Created If statement, if brokePggyBnk is true, jonsSavings multiplies by 100
 	// Set variable brokePggyBnk to true
-	var brokePggyBnk bool = true
-	if brokePggyBnk {
+	var brokePiggyBank bool = true
+	if brokePiggyBank {
 		jonsSavings *= 100
 	}
 	return int(jonsSavings)
@@ -52,6 +52,16 @@ func codeGeneration(cups int) int {
 	addiction := cups * 2
 	return addiction
 }
+
+//Given "x" and "5" return "x := 5"
+//Given "y" and "10" return "y := 10"
+/*
+func codeGeneration(name, value string) string {
+	output := fmt.Sprintf("%s := %s", name, value)
+	output = name + " := " + value
+	return output
+}
+*/
 
 // Lab Assignment 4: Fractions - Given a numerator and a denominator, calculate and return the decimal representation of the fraction
 
@@ -68,6 +78,7 @@ the last 2 characters in the 4 character array :) (and I experienced another off
 */
 
 func secondHalf(thanos string) string {
-	snap := thanos[2:4]
+	number := len(thanos) / 2
+	snap := thanos[number:]
 	return snap
 }
