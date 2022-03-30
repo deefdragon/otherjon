@@ -1,8 +1,9 @@
-# Lab
+# Lab 1
 
 Create functions and call them with example values that return each of the following.
 
 In the main function, call each of these functions with several different values, printing those values, and the results to the console.
+IE: `fmt.Printf("PRIME DETECTOR: IN: %d, OUT: %t\n", 23, primeDector(23))`
 
 If you have any questions about what a function should do in strange circumstances, or encounter said circumstances, comment them down in the function, and we will discuss them in the next lab.
 

@@ -14,9 +14,9 @@ Then we print this to the console and sha-bang! A fun little assignment to play 
 // Declared main function
 func main() {
 	// Printed the result using the fmt package, via a string, the variable, and another string
-	fmt.Println("Jon gets", jonsSleepHrs, "hours of sleep tonight!")
+	fmt.Printf("Jon gets %d hours of sleep tonight!", Negatives(13))
 	// Prints "Jon has (jonsSavings amount) pennies in his savings!" to the console, while specifying to printf what the various data types it needs to print is
-	fmt.Printf("Jon has %f %s\n", jonsSavings, "pennies in his savings!")
+	fmt.Printf("Jon has %f pennies in his savings!\n", jonsSavings)
 	// Printed the message to the console using Printf and specifying the data types of the variables it was supposed to print
 	fmt.Printf("%s %d %s", s, c, v)
 	// Printf is used to print a statement to the console, a string, followed by a variable divided by another variable, followed by another string
@@ -25,13 +25,14 @@ func main() {
 	fmt.Println("\n", thanos[2:4])
 }
 
-// Set variable to integer 12
-var jonsSleepHrs int = 12
+// // Set variable to integer 12
+// var jonsSleepHrs int = 12
 
 // Set variable to boolean that is true
 var hasBeenCoding bool = true
 
 func Negatives(jonsSleepHrs int) int {
+
 	// Created If statement tied to boolean variable hasBeenCoding
 	if hasBeenCoding {
 		// If true, multiplied jonsSleepHrs by -1
