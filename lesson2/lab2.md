@@ -16,6 +16,12 @@ Using the following table
 
 Create a flowchart for, and write a function for calculating your taxes two seperate ways.
 
+### Flowchart legend
+
+- Squares are steps
+- Diamods are choices
+- arrows for directionality/going back to the beginning and looping.
+
 1. Calculate where each earnings bracket is absolute. If you made 100,000, you paid 33% on everything.
 2. Calculate where each bracket is PROGRESSIVE.
    IE you paid 10% in the first $9,275,
@@ -32,4 +38,4 @@ The second has a return of N dollars. That is, each week, N dollars is added to 
 Assuming a random a random growth rate of the second account ($1000-$5000), and starting the first account at one penny ($0.01)
 write a function that determines how many weeks it takes the first account to outpace the second
 
-The expectation is that you Lookup and use the Math.random API from pkg.go.dev
+Extra credit: Lookup and use the Math.random API from pkg.go.dev to generate the starting value.
