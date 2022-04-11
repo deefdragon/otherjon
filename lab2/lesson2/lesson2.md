@@ -15,7 +15,7 @@ Flow diagrams/charts, and how to build a program
   - divide var a by 2.
 - selection (if statements)
   - if else blocks
-  - else if chaning
+  - else if chaining
   - final if block
 - reptition (for loops)
   - loops
@@ -23,10 +23,10 @@ Flow diagrams/charts, and how to build a program
   - range over loops
   - break statements and how to exit a loop.
 
-## complecations
+## complications
 
 - stacking structures
-  - using a for loop withing a foor loop
+  - using a for loop within a for loop
   - using an if statement within a loop
 - merging structures
   - on path 1 in an if, do one for loop
@@ -70,7 +70,7 @@ Flow diagrams/charts, and how to build a program
     - note that I would be happy if I won the car and the million dollars.
 - ! logical Not operator
   - says that the logic on the right is inverted.
-  - I will be happy if my breakfeast does NOT contain eggs.
+  - I will be happy if my breakfast does NOT contain eggs.
 - Parens and chaning
   - It is possible to use multiple logical operators in a row.
   - I would be happy with (Eggs && bacon) || (pancakes && mapel syurp)
@@ -85,8 +85,8 @@ Each comparison in an operator bust be done every time
 
 golang operator presidence,
 
-- Not operator
-- comparisons
+-  Not operator
+-  comparisons
 - AND operator
 - OR operator
   https://www.tutorialspoint.com/go/go_operators_precedence.htm
