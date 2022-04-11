@@ -1,7 +1,18 @@
-Lab
-given a parking lot with N spaces, track how many cars are in the parking lot, and how long they will be there
-(assume each car can park for 1-10 minutes), and that each minute a new car has an N% chance of showing up.
-print each minute the number of cars &, how long each parking stall has a car in it remaning for
+Lab 3
 
-Implement it using a package that allows for the professor(me) to call each tick and get specific information from it.
-API to be defined.
+create a player struct.
+store their name.
+store their level and experience (out of 100).
+store their CURRENT health, mana, and stamina in this struct
+store the MAXIMUM health, mana, and stamina in this struct
+
+create methods to increase/decrease each of these 8 variables.
+create methods to GET each of these values.
+
+put in some sanity checks to each method so that you dont end up with 250 out of 100 max health
+
+Create a method to print the players current stats
+CHEAT:
+fmt.Printf(`
+
+`)
