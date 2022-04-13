@@ -12,7 +12,4 @@ create methods to GET each of these values.
 put in some sanity checks to each method so that you dont end up with 250 out of 100 max health
 
 Create a method to print the players current stats
-CHEAT:
-fmt.Printf(`
 
-`)
