@@ -1,4 +1,4 @@
-package main
+package player
 
 import "fmt"
 
@@ -14,6 +14,17 @@ type playerData struct {
 	maxStamina  int
 	xpTillLevel int
 	gold        int
+}
+
+func (p *playerData) changeHealth(health int) {
+	if health <= 0 {
+		return
+	}
+	if p.Health <= health {
+		p.Health = 0
+		return
+	}
+	p.Health -= health
 }
 
 // Method for health potion, increases current health up to a maximum of max health
@@ -79,12 +90,28 @@ func (p *playerData) levelUp() {
 
 // Method to list off player1's stats
 func (p *playerData) pStatus() {
-	fmt.Printf("Character: %s\n", p.name)
-	fmt.Printf("Level: %d\n", p.level)
-	fmt.Printf("Experience: %d out of %d\n", p.xp, p.xpTillLevel)
-	fmt.Printf("HP: %d out of %d\n", p.Health, p.maxHealth)
-	fmt.Printf("MP: %d out of %d\n", p.Mana, p.maxMana)
-	fmt.Printf("SP: %d out of %d\n", p.Stamina, p.maxStamina)
+	// fmt.Printf("Character: %s\n", p.name)
+	// fmt.Printf("Level: %d\n", p.level)
+	// fmt.Printf("Experience: %d out of %d\n", p.xp, p.xpTillLevel)
+	// fmt.Printf("HP: %d out of %d\n", p.Health, p.maxHealth)
+	// fmt.Printf("MP: %d out of %d\n", p.Mana, p.maxMana)
+	// fmt.Printf("SP: %d out of %d\n", p.Stamina, p.maxStamina)
+	fmt.Printf(`Character: %s
+Level: %d
+Experience %d/%d
+HP: %d out of %d
+MP: %d out of %d
+SP: %d out of %d
+
+`,
+		p.name,
+		p.level,
+		p.xp, p.xpTillLevel,
+		p.Health, p.maxHealth,
+		p.Mana, p.maxMana,
+		p.Stamina, p.maxStamina,
+	)
+
 }
 
 // Method that rewards the player when a monster is defeated
@@ -97,15 +124,4 @@ func (p *playerData) killedMonster(xp int, gold int) {
 			p.levelUp()
 		}
 	}
-}
-func main() {
-	var player1 = playerData{"Jon", 1, 0, 100, 100, 50, 100, 100, 50, 100, 0}
-	player1.pStatus()
-	player1.gotHurt(player1.Health)
-	player1.fireball(player1.Mana)
-	player1.fireball(player1.Mana)
-	player1.swing(player1.Stamina)
-	player1.killedMonster(player1.xp, player1.gold)
-	player1.kevJuice(player1.Health, player1.Mana, player1.Stamina)
-	player1.pStatus()
 }
