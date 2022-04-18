@@ -4,120 +4,163 @@ import "fmt"
 
 type Player struct {
 	//TODO Getname,
-	name string
+	Name string
 
 	//TODO Getlevel,
-	level int
+	Level int
 
-	//TODO Getxp, AddXP
-	xp int
+	//TODO GetXp, AddXp
+	Xp int
 
 	//TODO Gethealth, ChangeHealth, IsDead
-	health int
+	Health int
 
 	//TODO Getmana, ChangeMana, CanCast
-	mana int
+	Mana int
 
 	//TODO Getstamina, ChangeStamina
-	stamina int
+	Stamina int
 
 	//TODO GetmaxHealth,
-	maxHealth int
+	MaxHealth int
 
 	//TODO GetmaxMana,
-	maxMana int
+	MaxMana int
 
 	//TODO GetmaxStamina,
-	maxStamina int
+	MaxStamina int
 
 	//TODO GetxpTillLevel,
-	xpTillLevel int
+	XpTillLevel int
 
 	//TODO Getgold, ChangeGold, HasGold
-	gold int
+	Gold int
 
 	//TODO print player stats to console (Status)
 
 	//TODO remove all unnecessary functions.
 }
 
-func New() *Player {
-
-	return &Player{}
+func (p *Player) GetName() string {
+	return p.Name
 }
-
+func (p *Player) GetLevel() int {
+	return p.Level
+}
+func (p *Player) GetXp() int {
+	return p.Xp
+}
+func (p *Player) AddXp(x int) {
+	p.Xp += x
+	if p.Xp <= 0 {
+		p.Xp = 0
+	}
+	if p.Xp >= p.XpTillLevel {
+		p.Xp -= p.XpTillLevel
+		p.levelUp()
+		p.AddXp(0)
+	}
+}
+func (p *Player) GetHealth() int {
+	return p.Health
+}
+func (p *Player) ChangeHealth(h int) {
+	p.Health += h
+	if p.Health > p.MaxHealth {
+		p.Health = p.MaxHealth
+	}
+}
+func (p *Player) IsDead() {
+	if p.Health <= 0 {
+		p.Health = 0
+		p.Name = ("{Deceased}" + p.Name)
+	}
+}
+func (p *Player) GetMana() int {
+	return p.Mana
+}
+func (p *Player) ChangeMana(m int) {
+	p.Mana += m
+	if p.Mana > p.MaxMana {
+		p.Mana = p.MaxMana
+	}
+	if p.Mana < 0 {
+		p.Mana = 0
+	}
+}
+func (p *Player) CanCast(cost int) bool {
+	if cost > p.Mana {
+		return false
+	}
+	return true
+}
+func (p *Player) GetStamina() int {
+	return p.Stamina
+}
+func (p *Player) ChangeStamina(s int) {
+	p.Stamina += s
+	if p.Stamina > p.MaxStamina {
+		p.Stamina = p.MaxStamina
+	}
+	if p.Stamina < 0 {
+		p.Stamina = 0
+	}
+}
+func (p *Player) CanSwing(cost int) bool {
+	if cost > p.Stamina {
+		return false
+	}
+	return true
+}
+func (p *Player) GetMaxHealth() int {
+	return p.MaxHealth
+}
+func (p *Player) GetMaxMana() int {
+	return p.MaxMana
+}
+func (p *Player) GetMaxStamina() int {
+	return p.MaxStamina
+}
+func (p *Player) GetXpTillLevel() int {
+	return p.XpTillLevel
+}
 func (p *Player) GetGold() int {
-	return p.gold
+	return p.Gold
 }
-
-func (p *Player) changeHealth(health int) {
-
-	if p.health <= health {
-		p.health = 0
-		return
-	}
-	p.health -= health
-}
-
-// Method for health potion, increases current health up to a maximum of max health
-func (p *Player) kevJuice(Health int, Mana int, Stamina int) {
-	p.health += 100
-	p.mana += 100
-	p.stamina += 50
-	fmt.Printf("You drank some kevJuice! You feel revitalized")
-	if p.health > p.maxHealth {
-		p.health = p.maxHealth
-	}
-	if p.stamina > p.maxStamina {
-		p.stamina = p.maxStamina
-	}
-	if p.mana > p.maxMana {
-		p.mana = p.maxMana
+func (p *Player) ChangeGold(g int) {
+	p.Gold += g
+	if p.Gold < 0 {
+		p.Gold = 0
 	}
 }
-
-// Method for decreasing the player's health if an enemy's swing connects
-func (p *Player) gotHurt(Health int) {
-	hurt := true
-	if hurt {
-		p.health -= 25
-		fmt.Printf("Ouch! You have %d health remaining\n", p.health)
-	} else {
-		fmt.Printf("A near miss, you're unscathed!\n")
+func (p *Player) HasGold(cost int) bool {
+	if cost <= p.Gold {
+		return true
 	}
+	return false
 }
 
-// Method for casting fireball, if successful, will cost mana
-func (p *Player) fireball(Mana int) {
-	fizzle := false
-	if fizzle {
-		fmt.Printf("Oh no! Your spell fizzled!\n")
-	} else {
-		p.mana -= 50
-		fmt.Printf("BOOM! Your enemy is burning, you have %d mana remaining\n", p.mana)
-	}
-}
+func New(name string) *Player {
 
-// Method for a Regular swing, costing stamina hit or miss
-func (p *Player) swing(Stamina int) {
-	hit := true
-	p.stamina -= 10
-	if hit {
-		fmt.Printf("A mighty strike! You have %d stamina left\n", p.stamina)
-	} else {
-		fmt.Printf("You whiffed! You have %d stamina left\n", p.stamina)
+	return &Player{
+		Name: name,
+		Xp:   0, XpTillLevel: 100,
+		Level:  1,
+		Health: 100, MaxHealth: 100,
+		Mana: 100, MaxMana: 100,
+		Stamina: 50, MaxStamina: 50,
+		Gold: 0,
 	}
 }
 
 // Method that levels the player up, increasing their level count and stats
 func (p *Player) levelUp() {
-	p.xp = 0
-	p.xpTillLevel += 50
+	p.XpTillLevel += 50
 	fmt.Printf("You leveled up! You gained 50 maxHP, 50 maxMP, and 10 maxSP\n")
-	p.maxHealth += 50
-	p.maxMana += 50
-	p.maxStamina += 10
-	p.level += 1
+	p.MaxHealth += 50
+	p.MaxMana += 50
+	p.MaxStamina += 10
+	p.Level += 1
 }
 
 // Method to list off player1's stats
@@ -126,31 +169,19 @@ func (p *Player) Status() {
 	//Look into the fmt documentation on how to have %d be fixed width/fixed number of characters/left/right justified.
 	//make the first argument of this printf a constant.
 	fmt.Printf(`Character: %s
-Level: %d
-Experience %d/%d
-HP: %d out of %d
-MP: %d out of %d
-SP: %d out of %d
-
+|==============|
+|Level: %2d     |
+|XP: %3d / %-3d |
+|HP: %3d / %-3d |
+|MP: %3d / %-3d |
+|SP: %3d / %-3d |
+|==============|
 `,
-		p.name,
-		p.level,
-		p.xp, p.xpTillLevel,
-		p.health, p.maxHealth,
-		p.mana, p.maxMana,
-		p.stamina, p.maxStamina,
+		p.Name,
+		p.Level,
+		p.Xp, p.XpTillLevel,
+		p.Health, p.MaxHealth,
+		p.Mana, p.MaxMana,
+		p.Stamina, p.MaxStamina,
 	)
-
-}
-
-// Method that rewards the player when a monster is defeated
-func (p *Player) killedMonster(xp int, gold int) {
-	victory := true
-	if victory {
-		p.xp += 100
-		p.gold += 100
-		if p.xp >= p.xpTillLevel {
-			p.levelUp()
-		}
-	}
 }
