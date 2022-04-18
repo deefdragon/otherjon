@@ -9,6 +9,9 @@ import (
 func main() {
 	p1 := player.New("Xanathar")
 
-	//Once you have player complete, create a player
-	//simulate a mock battle using the player, printing the stats table after the interactions.
+	fmt.Println(p1.GetStatus())
+
+	//simulate a mock battle using the player, printing the stats at the beginning and the end.
+
+	//Write tests for EVERY method. Aim for 100% of statements covered.
 }

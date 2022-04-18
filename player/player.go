@@ -42,6 +42,10 @@ type Player struct {
 }
 
 func (p *Player) GetName() string {
+	if p.IsDead() {
+		return p.Name + " {dead}"
+	}
+
 	return p.Name
 }
 func (p *Player) GetLevel() int {
@@ -60,6 +64,7 @@ func (p *Player) AddXp(x int) {
 		p.levelUp()
 		p.AddXp(0)
 	}
+
 }
 func (p *Player) GetHealth() int {
 	return p.Health
@@ -70,11 +75,8 @@ func (p *Player) ChangeHealth(h int) {
 		p.Health = p.MaxHealth
 	}
 }
-func (p *Player) IsDead() {
-	if p.Health <= 0 {
-		p.Health = 0
-		p.Name = ("{Deceased}" + p.Name)
-	}
+func (p *Player) IsDead() bool {
+	return p.Health <= 0
 }
 func (p *Player) GetMana() int {
 	return p.Mana
@@ -149,7 +151,7 @@ func New(name string) *Player {
 		Health: 100, MaxHealth: 100,
 		Mana: 100, MaxMana: 100,
 		Stamina: 50, MaxStamina: 50,
-		Gold: 0,
+		Gold: 10,
 	}
 }
 
@@ -164,7 +166,7 @@ func (p *Player) levelUp() {
 }
 
 // Method to list off player1's stats
-func (p *Player) Status() {
+func (p *Player) GetStatus() string {
 	//The real TODO here is to make it format nicer on the console. Use ----- and | etc. (Put it in a box)
 	//Look into the fmt documentation on how to have %d be fixed width/fixed number of characters/left/right justified.
 	//make the first argument of this printf a constant.
@@ -184,4 +186,11 @@ func (p *Player) Status() {
 		p.Mana, p.MaxMana,
 		p.Stamina, p.MaxStamina,
 	)
+
+	return ""
+}
+
+func statusHelper(name string, currentValue, maxValue, CharWidth int) string {
+	fmt.Printf("|%s: %3d / %-3d |", name, currentValue, maxValue)
+	return ""
 }
