@@ -170,7 +170,7 @@ func (p *Player) GetStatus() string {
 	//The real TODO here is to make it format nicer on the console. Use ----- and | etc. (Put it in a box)
 	//Look into the fmt documentation on how to have %d be fixed width/fixed number of characters/left/right justified.
 	//make the first argument of this printf a constant.
-	fmt.Printf(`Character: %s
+	S := fmt.Sprintf(`Character: %s
 |==============|
 |Level: %2d     |
 |XP: %3d / %-3d |
@@ -184,13 +184,6 @@ func (p *Player) GetStatus() string {
 		p.Xp, p.XpTillLevel,
 		p.Health, p.MaxHealth,
 		p.Mana, p.MaxMana,
-		p.Stamina, p.MaxStamina,
-	)
-
-	return ""
-}
-
-func statusHelper(name string, currentValue, maxValue, CharWidth int) string {
-	fmt.Printf("|%s: %3d / %-3d |", name, currentValue, maxValue)
-	return ""
+		p.Stamina, p.MaxStamina)
+	return S
 }
