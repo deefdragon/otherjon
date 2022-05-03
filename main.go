@@ -8,7 +8,6 @@ import (
 
 func main() {
 	p1 := player.New("Xanathar")
-
 	fmt.Println(p1.GetStatus())
 
 	//simulate a mock battle using the player, printing the stats at the beginning and the end.
