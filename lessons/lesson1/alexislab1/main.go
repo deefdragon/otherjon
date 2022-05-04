@@ -82,6 +82,24 @@ func Negatives(input int) (output int) {
 	return number
 }
 
+func SecondHalf(input string) (output string) {
+
+	return ""
+}
+
+func Pennies(input float64) (output int) {
+	return 0
+}
+
+func CodeGen(input string, input2 string) (output string) {
+	return ""
+}
+
+func Fractions(numerator int, denomernator int) (output float64) {
+	number := numerator / denomernator
+	return float64(number)
+}
+
 // func foo(text string) {
 
 // 	if true {
