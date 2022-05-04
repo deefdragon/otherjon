@@ -20,5 +20,5 @@ isEmpty()
 removeAt(int)
 remove(E) <- ignore
 set(int, E)
-len()
+size()
 toArray() <- ignore

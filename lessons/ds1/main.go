@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"time"
 )
 
@@ -18,7 +19,7 @@ func main() {
 
 }
 
-func DoTheDooer(thing Doer) {
+func DoTheDooer(thing Doer, p2 io.WriteCloser) {
 	thing.Do()
 }
 
