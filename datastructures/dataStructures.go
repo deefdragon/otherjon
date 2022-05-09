@@ -9,8 +9,8 @@ type Collection[T any] interface {
 
 type List[T any] interface {
 	Collection[T]
-	Set(int, T)
-	RemoveAt(int)
-	AddAt(int, T)
-	Get(int) T
+	Set(int, T) error
+	RemoveAt(int) error
+	AddAt(int, T) error
+	Get(int) (T, error)
 }
