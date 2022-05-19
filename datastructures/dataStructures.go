@@ -13,4 +13,5 @@ type List[T any] interface {
 	RemoveAt(int) error
 	AddAt(int, T) error
 	Get(int) (T, error)
+	GetAsArray() []T
 }

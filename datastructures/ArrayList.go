@@ -39,13 +39,46 @@ func (a *ArrayList[T]) Set(pos int, item T) error {
 }
 func (a *ArrayList[T]) RemoveAt(pos int) error {
 	//TODO nutex
+	if pos >= a.Size() || pos < 0 {
+		return OutOfBoundsError
+	}
+	start := a.backer[:pos]
+	end := a.backer[pos+1:]
+	for i := 0; len(end) > i; i++ {
+		start = append(start, end[i])
+	}
+	a.backer = start
 	return nil
 }
 func (a *ArrayList[T]) AddAt(pos int, item T) error {
 	//TODO nutex
+	if pos > a.Size() || pos < 0 {
+		return OutOfBoundsError
+	}
+	start := a.backer[:pos]
+	end := a.backer[pos:]
+	next := item
+	for i := 0; len(end) > i; i++ {
+		// old item taken out
+		saved := end[i]
+		// new item gets put in
+		start = append(start, next)
+		// new item equals old item
+		next = saved
+	}
+	start = append(start, next)
+	a.backer = start
 	return nil
 }
 func (a *ArrayList[T]) Get(pos int) (T, error) {
 	// TODO nutex
-	return *new(T), nil
+	if pos >= a.Size() || pos < 0 {
+		return *new(T), OutOfBoundsError
+	}
+	return a.backer[pos], nil
+}
+
+// in this getasarray, the format is already array, we only return a.backer
+func (a *ArrayList[T]) GetAsArray() []T {
+	return a.backer
 }

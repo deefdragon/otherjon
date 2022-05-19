@@ -95,6 +95,9 @@ func TestAddAt(t *testing.T) {
 	assert.NotNil(t, err)
 	assert.Equal(t, []int{5, 1, 4, 3, 2}, a.backer)
 	assert.Equal(t, OutOfBoundsError, err)
+	err = a.AddAt(5, 6)
+	assert.Nil(t, err)
+	assert.Equal(t, []int{5, 1, 4, 3, 2, 6}, a.backer)
 }
 
 // Testing Get, Retrieves a specific/specified item from our list of things. If it gives us a thing we don't want, test fails
