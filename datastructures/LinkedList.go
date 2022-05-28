@@ -51,15 +51,19 @@ func (a *LinkedList[T]) Set(pos int, item T) error {
 }
 func (a *LinkedList[T]) RemoveAt(pos int) error {
 	//TODO mutex
-	if pos >= a.size {
+	if pos >= a.size || pos < 0 {
 		return OutOfBoundsError
 	}
+	a.size--
+	if pos == 0 {
+		a.start = a.start.next
+		return nil
+	}
 	current := a.start
-	for i := 0; i < pos; i++ {
-
+	for i := 0; i < pos-1; i++ {
+		current = current.next
 	}
 	current.next = current.next.next
-	a.size--
 	return nil
 }
 func (a *LinkedList[T]) AddAt(pos int, item T) error {
