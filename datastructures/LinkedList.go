@@ -42,21 +42,51 @@ func (a *LinkedList[T]) Size() int {
 
 // List Methods
 func (a *LinkedList[T]) Set(pos int, item T) error {
-	// TODO mutex
-	// Hint: combine get and add
+	current := a.start
+	for i := 0; i < pos; i++ {
+		current = current.next
+	}
+	current.data = item
 	return nil
 }
 func (a *LinkedList[T]) RemoveAt(pos int) error {
 	//TODO mutex
+	if pos >= a.size {
+		return OutOfBoundsError
+	}
+	current := a.start
+	for i := 0; i < pos; i++ {
+
+	}
+	current.next = current.next.next
+	a.size--
 	return nil
 }
 func (a *LinkedList[T]) AddAt(pos int, item T) error {
 	//TODO mutex
+	n := &Node[T]{
+		data: item,
+		next: a.start,
+	}
+	a.size++
+	current := a.start
+	if pos == 0 {
+		n.next = current
+		a.start = n
+		return nil
+	}
+	for i := 0; i < pos-1; i++ {
+		current = current.next
+
+	}
+	n.next = current.next
+	current.next = n
+
 	return nil
 }
 func (a *LinkedList[T]) Get(pos int) (T, error) {
 	// TODO mutex
-	// go from the start, reach the specified position
+	// TODO(LLTEST-line76): needs error code written her
 	current := a.start
 	for i := 0; i < pos; i++ {
 		current = current.next
@@ -67,10 +97,11 @@ func (a *LinkedList[T]) GetAsArray() []T {
 	arr := []T{}
 	nextNode := a.start
 	for {
-		if len(arr) == a.size  {
+		if nextNode == nil {
 			break
 		}
 		arr = append(arr, nextNode.data)
+
 		nextNode = nextNode.next
 	}
 	return arr

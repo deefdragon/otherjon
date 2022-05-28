@@ -10,7 +10,7 @@ import (
 
 // Collection methods
 // Testing Add, Adds a *thing* to our metaphorical list of things, plonks it on the end I think? Need to make sure it adds the thing
-func TestAdd(t *testing.T) {
+func TestArrayListAdd(t *testing.T) {
 	al := NewArrayList[int]()
 	assert.NotNil(t, al)
 	assert.Equal(t, 0, len(al.backer))
@@ -19,7 +19,7 @@ func TestAdd(t *testing.T) {
 }
 
 // Testing Clear, Should clear our entire list of things, wiping it to 0/nil/empty
-func TestClear(t *testing.T) {
+func TestArrayListClear(t *testing.T) {
 	a := NewArrayList[int]()
 	assert.Equal(t, 0, len(a.backer))
 	a.Add(1)
@@ -34,7 +34,7 @@ func TestClear(t *testing.T) {
 }
 
 // Testing IsEmpty, is it empty? TRUE, does it have stuff? FALSE, simple enough
-func TestIsEmpty(t *testing.T) {
+func TestArrayListIsEmpty(t *testing.T) {
 	a := NewArrayList[int]()
 	assert.True(t, a.IsEmpty())
 	a.Add(27)
@@ -44,7 +44,7 @@ func TestIsEmpty(t *testing.T) {
 }
 
 //Testing Size, a method that gets us the size of our list by how many valid things are inside, not including empty buckets, should return a whole number worth of things
-func TestSize(t *testing.T) {
+func TestArrayListSize(t *testing.T) {
 	a := NewArrayList[int]()
 	assert.Equal(t, 0, a.Size())
 	a.Add(1)
@@ -62,7 +62,7 @@ func TestSize(t *testing.T) {
 // Should the provided index be invalid, returns outofboundserror
 // in an index with 3 items, Valid indexes are 0-2, additionally index 3 will put the item on the end(same as add)
 // Valid indexes are any indexes which there are currently an item, or the index directly following the last item
-func TestAddAt(t *testing.T) {
+func TestArrayListAddAt(t *testing.T) {
 	a := NewArrayList[int]()
 
 	// empty list adding
@@ -102,7 +102,7 @@ func TestAddAt(t *testing.T) {
 
 // Testing Get, Retrieves a specific/specified item from our list of things. If it gives us a thing we don't want, test fails
 // should not return incorrect data, should return OOB error if index is invalid. Index is valid where any item currently exists
-func TestGet(t *testing.T) {
+func TestArrayListGet(t *testing.T) {
 	a := NewArrayList[int]()
 	a.Add(1)
 	a.Add(2)
@@ -135,7 +135,7 @@ func TestGet(t *testing.T) {
 
 // Testing RemoveAt, Removes a specified object at a specified location in the collection of stuff™, make sure it removes the right thing
 // Returns an error if used at an invalid index (OOB), valid indexes are any index in which there is an existing item to remove
-func TestRemoveAt(t *testing.T) {
+func TestArrayListRemoveAt(t *testing.T) {
 	a := NewArrayList[int]()
 	a.Add(1)
 	a.Add(2)
@@ -162,7 +162,7 @@ func TestRemoveAt(t *testing.T) {
 }
 
 // Testing Set, Has the power to remake/reset the entire list of stuff to whatever we specify. Make sure it doesn't keep old stuff and new stuff gets added in its place
-func TestSet(t *testing.T) {
+func TestArrayListSet(t *testing.T) {
 	al := NewArrayList[int]()
 	// Normal conditions
 	assert.NotNil(t, al)
