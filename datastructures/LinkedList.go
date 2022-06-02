@@ -20,6 +20,7 @@ func NewLinkedList[T any]() *LinkedList[T] {
 // Collection methods
 func (a *LinkedList[T]) Add(item T) {
 	// TODO mutex
+	// addAt pos = size-1
 	n := &Node[T]{
 		data: item,
 		next: a.start,
@@ -90,7 +91,6 @@ func (a *LinkedList[T]) AddAt(pos int, item T) error {
 }
 func (a *LinkedList[T]) Get(pos int) (T, error) {
 	// TODO mutex
-	// TODO(LLTEST-line76): needs error code written her
 	current := a.start
 	for i := 0; i < pos; i++ {
 		current = current.next

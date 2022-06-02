@@ -73,14 +73,12 @@ func TestLinkedListGet(t *testing.T) {
 	got, err := a.Get(1)
 	assert.Equal(t, 2, got)
 	assert.Nil(t, err)
-	// TODO figure out why this is failing
 	got, err = a.Get(3)
 	assert.Equal(t, 0, got)
 	assert.NotNil(t, err)
 
 }
 
-//TODO finish Set testing
 func TestLinkedListSet(t *testing.T) {
 	a := NewLinkedList[int]()
 	arr := a.GetAsArray()
