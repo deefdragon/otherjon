@@ -42,3 +42,32 @@ func countLongSubarrays(data []int) int {
 	// returns our total
 	return total
 }
+
+// type d[T any] interface {
+// 	insertFirst(T)
+// 	deleteFirst() T
+// 	insertLast(T)
+// 	deleteLast() T
+// }
+
+// func swapEnds[T any](arr d[T]) {
+// 	savedLast := arr.deleteLast()
+// 	savedFirst := arr.deleteFirst()
+// 	arr.insertFirst(savedLast)
+// 	arr.insertLast(savedFirst)
+// }
+// func shiftLeft[T any](arr d[T], k int) {
+// 	for i := 0; i < k; i++ {
+// 		x := arr.deleteFirst()
+// 		arr.insertLast(x)
+// 	}
+// }
+
+// func shiftLeftR[T any](arr d[T], k int) {
+// 	if k <= 0 {
+// 		return
+// 	}
+// 	x := arr.deleteFirst()
+// 	arr.insertLast(x)
+// 	shiftLeftR(arr, k-1)
+// }
